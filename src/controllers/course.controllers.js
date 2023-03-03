@@ -14,7 +14,7 @@ const create = catchError(async(req, res) => {
 
 const getOne = catchError(async(req, res) => {
     const { id } = req.params;
-    const result = await Course.findByPk(id);
+    const result = await Course.findByPk(id, {include: [Student]});
     if(!result) return res.sendStatus(404);
     return res.json(result);
 });
